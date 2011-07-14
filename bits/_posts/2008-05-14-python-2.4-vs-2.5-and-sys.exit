@@ -1,0 +1,6 @@
+---
+layout: bits
+title: Python 2.4 vs. 2.5 - sys.exit() throwing an Exception.
+published: false
+---
+// ... sys.exit() changed its type
