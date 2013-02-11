@@ -6,7 +6,7 @@ One of the recent updates in my home infrastructure was to convert from VMware t
 
 ## Symptoms
 
-From the "business" side effects were quite obvious. Neither the PS3 nor the H/K AVR were able to see the media server. Technically, after a bit of digging, it turned out that the multicast discovery sent from the virtual machine hasn't been forwarded by the virtual hypervisor. The VM host saw the multicast communication sent to 239.255.255.250, port 1900 but it didn't put it through.
+From the "business" side effects were quite obvious. Neither the PS3 nor the H/K AVR were able to see the media server. Technically, after a bit of digging, it turned out that the multicast discovery sent from the virtual machine hasn't been forwarded/routed by the virtual hypervisor. The VM host saw the multicast communication sent to 239.255.255.250, port 1900 but it didn't put it through.
 
 ## Fix
 
@@ -19,6 +19,12 @@ The VM hypervisor configuration (br0 is the bridge that all virtual machines are
 {% highlight bash %}
 [root@blackbox ~]# smcroute -j br0 239.255.255.250
 [root@blackbox ~]# smcroute -a br0 0.0.0.0 239.255.255.250 br0
+{% endhighlight %}
+
+Moreover, one has to disable the multicast snooping functionality of the Linux router by setting the appropriate flag (it's not yet, as of Feb 2013, available via systcl):
+
+{% highlight bash %}
+[root@blackbox ~]# echo 0 > /sys/devices/virtual/net/br0/bridge/multicast_snooping
 {% endhighlight %}
 
 ### media server
