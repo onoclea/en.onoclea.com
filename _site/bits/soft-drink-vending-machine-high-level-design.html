@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<meta name="description" content="" />
+		<meta name="keywords" content="linux, unix, cloud, amazon, s3, cloudfront, route 53, dns, puppet, configuration management" />
+		<meta name="language" content="en" />
+
+		<meta name="robots" content="NOODP, index, follow" />
+	
+		<link rel="stylesheet" href="http://static.onoclea.com/css/style.css" media="screen" />
+		<link rel="stylesheet" href="http://static.onoclea.com/css/syntax.css" media="screen" />
+
+		<link rel="alternate" type="application/rss+xml" title="Onoclea Paweł Sawicki" href="http://feeds.feedburner.com/Onoclea" />
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/jquery-1.4.2.min.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/cufon-yui.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed_Light.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Yanone_Kaffeesatz_Light.font.js"></script>
+	
+		<script type="text/javascript">
+			Cufon.replace('#banner',{fontFamily: 'Kurier Condensed'});
+
+			Cufon.replace('#content h1',{fontFamily: 'Kurier Condensed'});
+			Cufon.replace('#content h2',{fontFamily: 'Kurier Condensed Light'});
+
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+
+			Cufon.replace('#menu a',{hover:true, fontFamily: 'Yanone Kaffeesatz Light'});
+		</script>
+		<title>Onoclea - Soft-drink vending machine high level design</title>
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-19646337-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="outer-wrapper">
+			<div id="wrapper">
+				<div class="leftc">
+		
+					<div class="cell-1">
+						<a href="http://onoclea.com/"><img src="http://static.onoclea.com/images/layout/onoclea-logo.png" title="Onoclea Logo" alt="Onoclea Logo" class="logo"/></a>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-2">
+						<h1>About me</h1>
+						<p>
+							An experienced enterprise architect and project manager with a strong technological background.
+						</p>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-3">
+						<h1><a href="/contact.html">Contact me</a></h1>
+						<p>
+							Polish mobile (preferred):<br/>
+							<a href="tel:+48601610614">+48&nbsp;601&nbsp;610&nbsp;614</a><br/>
+							UK mobile:<br/>
+							<a href="tel:+447565605604">+44&nbsp;7565&nbsp;605&nbsp;604</a><br/>
+							eMail:<br/>
+							<a href="mailto:pawel@sawicki.eu">pawel@sawicki.eu</a>
+						</p>
+					</div>
+
+					<a href="http://pl.onoclea.com/o_mnie.html">
+						<div class="cell-4">
+							<h1>
+								wersja polska
+								<br />
+								<img src="http://static.onoclea.com/images/layout/flag-poland.png" alt="wersja polska" title="wersja polska" />
+							</h1>
+						</div>
+					</a>
+				</div>
+				<div class="rightc">
+					<div id="menu">
+						<a href="/about_me.html">About me</a>
+						<a href="/clients.html">Clients</a>
+						<a href="/modus_operandi.html">Modus operandi</a>
+						<a href="/bits.html">Bits</a>
+						<a href="/contact.html">Contact me</a>
+					</div>
+		
+					<div id="banner">
+						<div id="text-1">Do you need a&nbsp;Cloud, an IT or a&nbsp;Telecommunications specialist?</div>
+						<div id="text-2"><a href="/contact.html">Contact me!</a></div>
+					</div>
+
+					<div id="content">
+						<div id="header">
+	<h1>
+		<a href="/bits/soft-drink-vending-machine-high-level-design.html">Soft-drink vending machine high level design</a>
+	</h1>
+
+	<h2>
+		<a href="/bits/soft-drink-vending-machine-high-level-design.html">/bits/soft-drink-vending-machine-high-level-design.html</a>
+	</h2>
+
+	<h3>
+		published 23 Nov 2010
+	</h3>
+</div>
+
+<div id="bit">
+	<p>During one of my job interviews I was asked to present a high level design of a soft-drink vending machine. So I sat down and tried to think what would the perfect soft-drink machine look like. This is the version I came up with. The task itself was limited to 30 minutes, so this is not a full-fledged design.</p>
+
+<h2 id='general_design'>General design</h2>
+
+<p>A typical soft-drink vending machine is built as a standalone and a self-contained, tamper-proof device, connected physically only to a power outlet. The machine’s sole purpose is to issue/release a soft-drink to end-users in exchange for a cleared payment procedure. The machine should communicate with the operations centre and transfer (via e.g. a wireless link) a set of status information, such as the number and kind of goods left, any problems it observed (power outage, cash box overfill, mechanical jams) or the fact that the doors were opened, which could either mean that the technician arrived to resupply the unit (which is good) or that somebody tried to steal from it. The main components include:</p>
+
+<ul>
+<li>
+<p>a storage area with a set of sensors (infrared or weight based), used to count the number of goods left</p>
+</li>
+
+<li>
+<p>battery used to sustain the unit’s operation during power outage</p>
+</li>
+
+<li>
+<p>money accepting and verification unit; depending on requirements it can either accept coins, cash, credit cards, RFID tags or any other kind of token, such as magnetic keys or proximity cards</p>
+</li>
+
+<li>
+<p>a user interface unit used to interact with the machine; it can range from a simple keyboard, without any display up to a hi-res touchscreen display with a set of stereo speakers that can, during standby, serve as a advertisement</p>
+</li>
+
+<li>
+<p>a gyroscope, an accelerometer and a GPS unit used to locate the machine and report any misbehavior (changing the position of the device in order to get to the goods locked inside).</p>
+</li>
+
+<li>
+<p>a two way wireless link (e.g. a GPRS modem) used for a bi-directional communications with the operations centre</p>
+</li>
+
+<li>
+<p>an internal storage used to keep operation logs or usage statistics used for offline billing and reporting (e.g a flash card or a tape drive).</p>
+</li>
+</ul>
+
+<h2 id='main_use_cases_explaining_the_functionality'>Main use cases explaining the functionality</h2>
+
+<p>The list of most commonly met use-case scenarios.</p>
+
+<h3 id='normal_idle_operation'>Normal (idle) operation</h3>
+
+<ul>
+<li>
+<p>Machine displays (if it is capable of) a welcome message and waits for the user to start the operation - choose a drink to be sold.</p>
+</li>
+
+<li>
+<p>It periodically reports its current status (a keep-alive message) including e.g. current stock levels, environmental conditions, its geographical position etc.</p>
+</li>
+</ul>
+
+<h3 id='resupplying_with_afresh_batch_of_drinks'>Resupplying with a fresh batch of drinks</h3>
+
+<ul>
+<li>
+<p>A worker arrives at the machine.</p>
+</li>
+
+<li>
+<p>Machine is put into service mode.</p>
+</li>
+
+<li>
+<p>Doors are opened.</p>
+</li>
+
+<li>
+<p>Supplies are refilled.</p>
+</li>
+
+<li>
+<p>Doors are closed.</p>
+</li>
+
+<li>
+<p>Machine is set to normal mode.</p>
+</li>
+
+<li>
+<p>Before going on-line, machine performs a set of checks, notes the current number of supplies and reports its current status to the operations centre together with the fact that it went a resupply operation.</p>
+</li>
+
+<li>
+<p>Before leaving the site, worker tests the operation by going through a regular process of buying a drink.</p>
+</li>
+</ul>
+
+<h3 id='working_under_apower_failure_situation'>Working under a power failure situation</h3>
+
+<ul>
+<li>
+<p>The machine continues to operate as usual until the energy levels drop to a certain value - e.g. 20%.</p>
+</li>
+
+<li>
+<p>After reaching the “service charge” level (20%), the machine goes into service mode. It does not sell any drinks. However, it still reports its status to the operations center, including the battery level.</p>
+</li>
+
+<li>
+<p>Once the batteries are almost discharged, the machine shuts down. It locks itself down, preventing unauthorized access.</p>
+</li>
+
+<li>
+<p>When the power is restored, the machine starts up and performs a set of self-tests.</p>
+</li>
+
+<li>
+<p>If the tests are completed without errors, the machine goes into normal/idle mode.</p>
+</li>
+
+<li>
+<p>If any of the tests fails, the machine continues to operate in the service mode and notifies the operations centre about its condition - presumably causing a technician to arrive.</p>
+</li>
+</ul>
+
+<h3 id='abnormal_operation'>Abnormal operation</h3>
+
+<ul>
+<li>
+<p>If any abnormal conditions are observed, the machine goes into service mode.</p>
+</li>
+
+<li>
+<p>A status message is sent to the operations centre.</p>
+</li>
+
+<li>
+<p>The operations centre may either remotely shut down/lock the machine, force a restart or give “a green light” and restore its normal operations.</p>
+</li>
+
+<li>
+<p>Machine periodically performs a set of self-tests. If the tests complete without errors, a normal mode is restore.</p>
+</li>
+
+<li>
+<p>Description of a process of buying a drink</p>
+</li>
+</ul>
+
+<h3 id='user_chooses_adrink'>User chooses a drink.</h3>
+
+<ul>
+<li>
+<p>If the drink is not available an appropriate message is displayed.</p>
+</li>
+
+<li>
+<p>If the drink is available, a required amount of money is displayed.</p>
+</li>
+
+<li>
+<p>User inserts coins/notes/cards or any other token (a magnetic key, an RFID tag etc.)</p>
+</li>
+
+<li>
+<p>A payment verification takes place. Depending on the payment method the process may include checking if the coins are of correct size, weight, if they interact with magnetic waves. If a banknote is inserted, it may be additionally checked using UV light. Other means of payment, like credit/debit cards, RFID tags or magnetic keys, require connecting to a central database in order to clear the transaction or alternatively - locally store the transaction information for a future, offline billing.</p>
+</li>
+
+<li>
+<p>Once the payment is cleared, the drink is released.</p>
+</li>
+
+<li>
+<p>The stocks are recalculated.</p>
+</li>
+
+<li>
+<p>The transaction status is sent to the operations center either after each operation, in batches (e.g. after 10 operations) or after a certain time elapsed (every 10 minutes) - depending on the required granularity.</p>
+</li>
+</ul>
+</div>
+
+<h2>
+	Questions?
+</h2>
+
+<p>
+	Should you have any questions or comments just drop me an email and I'll be happy to respond! You can find the contact information on... the <a href="http://en.onoclea.com/contact.html">contact</a> page. Or use the comment box below.
+</p>
+
+<h2>
+	Comments?
+</h2>
+
+<p>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_shortname = 'en-onoclea';
+		var disqus_identifier = '/bits/soft-drink-vending-machine-high-level-design';
+		var disqus_url = 'http://en.onoclea.com/bits/soft-drink-vending-machine-high-level-design.html';
+
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</p>
+
+
+						<div id="footer">
+							<img src="http://static.onoclea.com/images/layout/hline-2.png" title="" alt="" />
+							<a href="/about_me.html">About me</a>
+							<a href="/clients.html">Clients</a>
+							<a href="/modus_operandi.html">Modus operandi</a>
+							<a href="/bits.html">Bits</a>
+							<a href="/contact.html">Contact me</a>
+							<span class="info">© 2010 Onoclea Paweł Sawicki</span>
+						</div>
+					</div>
+
+					<div id="bottom"></div>
+					<script type="text/javascript"> Cufon.now(); </script>
+				</div>
+
+				<div style="clear:both;height:1px;"></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<meta name="description" content="" />
+		<meta name="keywords" content="linux, unix, cloud, amazon, s3, cloudfront, route 53, dns, puppet, configuration management" />
+		<meta name="language" content="en" />
+
+		<meta name="robots" content="NOODP, index, follow" />
+	
+		<link rel="stylesheet" href="http://static.onoclea.com/css/style.css" media="screen" />
+		<link rel="stylesheet" href="http://static.onoclea.com/css/syntax.css" media="screen" />
+
+		<link rel="alternate" type="application/rss+xml" title="Onoclea Paweł Sawicki" href="http://feeds.feedburner.com/Onoclea" />
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/jquery-1.4.2.min.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/cufon-yui.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed_Light.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Yanone_Kaffeesatz_Light.font.js"></script>
+	
+		<script type="text/javascript">
+			Cufon.replace('#banner',{fontFamily: 'Kurier Condensed'});
+
+			Cufon.replace('#content h1',{fontFamily: 'Kurier Condensed'});
+			Cufon.replace('#content h2',{fontFamily: 'Kurier Condensed Light'});
+
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+
+			Cufon.replace('#menu a',{hover:true, fontFamily: 'Yanone Kaffeesatz Light'});
+		</script>
+		<title>Onoclea - How to make the HP MicroServer Remote Access Card to work via IPMI (ipmitool) on ArchLinux (or any other Linux distro in general)?</title>
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-19646337-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="outer-wrapper">
+			<div id="wrapper">
+				<div class="leftc">
+		
+					<div class="cell-1">
+						<a href="http://onoclea.com/"><img src="http://static.onoclea.com/images/layout/onoclea-logo.png" title="Onoclea Logo" alt="Onoclea Logo" class="logo"/></a>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-2">
+						<h1>About me</h1>
+						<p>
+							An experienced enterprise architect and project manager with a strong technological background.
+						</p>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-3">
+						<h1><a href="/contact.html">Contact me</a></h1>
+						<p>
+							Polish mobile (preferred):<br/>
+							<a href="tel:+48601610614">+48&nbsp;601&nbsp;610&nbsp;614</a><br/>
+							UK mobile:<br/>
+							<a href="tel:+447565605604">+44&nbsp;7565&nbsp;605&nbsp;604</a><br/>
+							eMail:<br/>
+							<a href="mailto:pawel@sawicki.eu">pawel@sawicki.eu</a>
+						</p>
+					</div>
+
+					<a href="http://pl.onoclea.com/o_mnie.html">
+						<div class="cell-4">
+							<h1>
+								wersja polska
+								<br />
+								<img src="http://static.onoclea.com/images/layout/flag-poland.png" alt="wersja polska" title="wersja polska" />
+							</h1>
+						</div>
+					</a>
+				</div>
+				<div class="rightc">
+					<div id="menu">
+						<a href="/about_me.html">About me</a>
+						<a href="/clients.html">Clients</a>
+						<a href="/modus_operandi.html">Modus operandi</a>
+						<a href="/bits.html">Bits</a>
+						<a href="/contact.html">Contact me</a>
+					</div>
+		
+					<div id="banner">
+						<div id="text-1">Do you need a&nbsp;Cloud, an IT or a&nbsp;Telecommunications specialist?</div>
+						<div id="text-2"><a href="/contact.html">Contact me!</a></div>
+					</div>
+
+					<div id="content">
+						<div id="header">
+	<h1>
+		<a href="/bits/hp-microserver-remote-access-card-ipmi-on-linux.html">How to make the HP MicroServer Remote Access Card to work via IPMI (ipmitool) on ArchLinux (or any other Linux distro in general)?</a>
+	</h1>
+
+	<h2>
+		<a href="/bits/hp-microserver-remote-access-card-ipmi-on-linux.html">/bits/hp-microserver-remote-access-card-ipmi-on-linux.html</a>
+	</h2>
+
+	<h3>
+		published 02 Nov 2012
+	</h3>
+</div>
+
+<div id="bit">
+	<p>Couple of days back I wanted to access the HP MicroServer Remote Access Card via the IPMI (ipmitool) interface. The reason was quite simple - I locked myself out from the web interface by setting a password that included &#8220;special&#8221; (in my case the &#8221;&amp;&#8221;) characters. UI allowed me to change the password, but then refused to let me in&#8230; Getting back to the point.</p>
+
+<p>After probing the respective modules (<code>ipmi_devintf</code> &amp; <code>ipmi_si</code>) nothing worked.</p>
+
+<p><div class='highlight'><pre><code class='bash'><span class='o'>[</span>root@host<span class='o'>]</span><span class='c'># ipmitool chassis status</span>
+Could not open device at /dev/ipmi0 or /dev/ipmi/0 or /dev/ipmidev/0: No such file or directory
+Error sending Chassis Status <span class='nb'>command</span>
+</code></pre></div></p>
+
+<p>It turned out to be a problem with the default internall communication port, that was not picked up correctly. The manual (see the link below) states it clearly - quote from the docs (page no. 5):</p>
+
+<blockquote>
+<p>The default system base address for the I/O mapped KCS Interface is 0xCA2 (&#8230;)</p>
+</blockquote>
+
+<p>So, to make things right, one must pass the correct <code>ports</code> parameter to the <code>ipmi_si</code> module while probing:</p>
+
+<p><div class='highlight'><pre><code class='bash'><span class='o'>[</span>root@host<span class='o'>]</span><span class='c'># modprobe ipmi_devinf</span>
+<span class='o'>[</span>root@host<span class='o'>]</span><span class='c'># modprobe ipmi_si type=kcs ports=0xca2</span>
+</code></pre></div></p>
+
+<p>Now the kernel recognizes the card without any problems:</p>
+
+<p><div class='highlight'><pre><code class='bash'><span class='o'>[</span>root@host<span class='o'>]</span><span class='c'># dmesg</span>
+<span class='o'>[</span>32559.752311<span class='o'>]</span> IPMI System Interface driver.
+<span class='o'>[</span>32559.752321<span class='o'>]</span> ipmi_si: probing via hardcoded address
+<span class='o'>[</span>32559.752326<span class='o'>]</span> ipmi_si: Adding hardcoded-specified kcs state machine
+<span class='o'>[</span>32559.752336<span class='o'>]</span> ipmi_si: Trying hardcoded-specified kcs state machine at i/o address 0xca2, slave address 0x0, irq 0
+<span class='o'>[</span>32560.211697<span class='o'>]</span> ipmi_si ipmi_si.0: Found new BMC <span class='o'>(</span>man_id: 0x000001, prod_id: 0x3431, dev_id: 0x20<span class='o'>)</span>
+<span class='o'>[</span>32560.211973<span class='o'>]</span> ipmi_si ipmi_si.0: IPMI kcs interface initialized
+</code></pre></div></p>
+
+<p>More importantly, <code>ipmitool</code> just works:</p>
+
+<p><div class='highlight'><pre><code class='bash'><span class='o'>[</span>root@host<span class='o'>]</span><span class='c'># ipmitool chassis status</span>
+System Power         : on
+Power Overload       : <span class='nb'>false</span>
+Power Interlock      : inactive
+Main Power Fault     : <span class='nb'>false</span>
+Power Control Fault  : <span class='nb'>false</span>
+Power Restore Policy : always-off
+Last Power Event     : <span class='nb'>command</span>
+Chassis Intrusion    : inactive
+Front-Panel Lockout  : inactive
+Drive Fault          : <span class='nb'>false</span>
+Cooling/Fan Fault    : <span class='nb'>false</span>
+</code></pre></div></p>
+
+<h2 id='archlinux_specific_settings'>ArchLinux specific settings</h2>
+
+<p>In ArchLinux, in order to set those options permanently, you need to create two files, in order to&#8230;</p>
+
+<h3 id='load_the_necessary_modules_at_boot'>&#8230;load the necessary modules at boot</h3>
+
+<p>Create a file in <code>/etc/modules-load.d</code>, e.g. <code>ipmi.conf</code>:</p>
+<div class='highlight'><pre><code class='bash'><span class='c'># cat /etc/modules-load.d/ipmi.conf </span>
+ipmi_devintf
+ipmi_si
+</code></pre></div>
+<p>Now, on boot, ArchLinux will load those two modules automatically.</p>
+
+<h3 id='set_the_respective_options_while_loading__module'>&#8230;set the respective options while loading <code>ipmi_si</code> module</h3>
+
+<p>Create a file named <code>ipmi_si</code> in <code>/etc/modprobe.d</code>:</p>
+<div class='highlight'><pre><code class='bash'><span class='c'># cat /etc/modprobe.d/ipmi_si.conf </span>
+options ipmi_si <span class='nb'>type</span><span class='o'>=</span>kcs <span class='nv'>ports</span><span class='o'>=</span>0xca2
+</code></pre></div>
+<p>This will make sure that the <code>ipmi_si</code> module receives the correct options upon loading.</p>
+
+<h2 id='useful_links'>Useful links</h2>
+
+<p>While applying the RTFM method, the <em>M</em> part is sometimes quite handy:</p>
+
+<ul>
+<li><a href='http://h10030.www1.hp.com/ctg/Manual/c02948881.pdf' title='HP MicroServer Remote Access Card manual'>http://h10032.www1.hp.com/ctg/Manual/c02948881.pdf</a></li>
+</ul>
+</div>
+
+<h2>
+	Questions?
+</h2>
+
+<p>
+	Should you have any questions or comments just drop me an email and I'll be happy to respond! You can find the contact information on... the <a href="http://en.onoclea.com/contact.html">contact</a> page. Or use the comment box below.
+</p>
+
+<h2>
+	Comments?
+</h2>
+
+<p>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_shortname = 'en-onoclea';
+		var disqus_identifier = '/bits/hp-microserver-remote-access-card-ipmi-on-linux';
+		var disqus_url = 'http://en.onoclea.com/bits/hp-microserver-remote-access-card-ipmi-on-linux.html';
+
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</p>
+
+
+						<div id="footer">
+							<img src="http://static.onoclea.com/images/layout/hline-2.png" title="" alt="" />
+							<a href="/about_me.html">About me</a>
+							<a href="/clients.html">Clients</a>
+							<a href="/modus_operandi.html">Modus operandi</a>
+							<a href="/bits.html">Bits</a>
+							<a href="/contact.html">Contact me</a>
+							<span class="info">© 2010 Onoclea Paweł Sawicki</span>
+						</div>
+					</div>
+
+					<div id="bottom"></div>
+					<script type="text/javascript"> Cufon.now(); </script>
+				</div>
+
+				<div style="clear:both;height:1px;"></div>
+			</div>
+		</div>
+	</body>
+</html>

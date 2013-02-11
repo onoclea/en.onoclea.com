@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<meta name="description" content="" />
+		<meta name="keywords" content="linux, unix, cloud, amazon, s3, cloudfront, route 53, dns, puppet, configuration management" />
+		<meta name="language" content="en" />
+
+		<meta name="robots" content="NOODP, index, follow" />
+	
+		<link rel="stylesheet" href="http://static.onoclea.com/css/style.css" media="screen" />
+		<link rel="stylesheet" href="http://static.onoclea.com/css/syntax.css" media="screen" />
+
+		<link rel="alternate" type="application/rss+xml" title="Onoclea Paweł Sawicki" href="http://feeds.feedburner.com/Onoclea" />
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/jquery-1.4.2.min.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/cufon-yui.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed_Light.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Yanone_Kaffeesatz_Light.font.js"></script>
+	
+		<script type="text/javascript">
+			Cufon.replace('#banner',{fontFamily: 'Kurier Condensed'});
+
+			Cufon.replace('#content h1',{fontFamily: 'Kurier Condensed'});
+			Cufon.replace('#content h2',{fontFamily: 'Kurier Condensed Light'});
+
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+
+			Cufon.replace('#menu a',{hover:true, fontFamily: 'Yanone Kaffeesatz Light'});
+		</script>
+		<title>Onoclea - csync2 - When all you need is a multi-way synchronization tool</title>
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-19646337-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="outer-wrapper">
+			<div id="wrapper">
+				<div class="leftc">
+		
+					<div class="cell-1">
+						<a href="http://onoclea.com/"><img src="http://static.onoclea.com/images/layout/onoclea-logo.png" title="Onoclea Logo" alt="Onoclea Logo" class="logo"/></a>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-2">
+						<h1>About me</h1>
+						<p>
+							An experienced enterprise architect and project manager with a strong technological background.
+						</p>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-3">
+						<h1><a href="/contact.html">Contact me</a></h1>
+						<p>
+							Polish mobile (preferred):<br/>
+							<a href="tel:+48601610614">+48&nbsp;601&nbsp;610&nbsp;614</a><br/>
+							UK mobile:<br/>
+							<a href="tel:+447565605604">+44&nbsp;7565&nbsp;605&nbsp;604</a><br/>
+							eMail:<br/>
+							<a href="mailto:pawel@sawicki.eu">pawel@sawicki.eu</a>
+						</p>
+					</div>
+
+					<a href="http://pl.onoclea.com/o_mnie.html">
+						<div class="cell-4">
+							<h1>
+								wersja polska
+								<br />
+								<img src="http://static.onoclea.com/images/layout/flag-poland.png" alt="wersja polska" title="wersja polska" />
+							</h1>
+						</div>
+					</a>
+				</div>
+				<div class="rightc">
+					<div id="menu">
+						<a href="/about_me.html">About me</a>
+						<a href="/clients.html">Clients</a>
+						<a href="/modus_operandi.html">Modus operandi</a>
+						<a href="/bits.html">Bits</a>
+						<a href="/contact.html">Contact me</a>
+					</div>
+		
+					<div id="banner">
+						<div id="text-1">Do you need a&nbsp;Cloud, an IT or a&nbsp;Telecommunications specialist?</div>
+						<div id="text-2"><a href="/contact.html">Contact me!</a></div>
+					</div>
+
+					<div id="content">
+						<div id="header">
+	<h1>
+		<a href="/bits/csync2-multi-way-sync.html">csync2 - When all you need is a multi-way synchronization tool</a>
+	</h1>
+
+	<h2>
+		<a href="/bits/csync2-multi-way-sync.html">/bits/csync2-multi-way-sync.html</a>
+	</h2>
+
+	<h3>
+		published 08 Jul 2011
+	</h3>
+</div>
+
+<div id="bit">
+	<p>Scaling a system horizontally usually requires sharing some data between your worker nodes. If your architecture justifies a database server (be it either SQL or NoSQL) then that&#8217;s usually a quite trivial task (as long as you assure that your database layer scales, which is another kind of a problem). However, if your requirements are different - like e.g. POSIX compliancy - then you need to look for someting else.</p>
+
+<p>(Un)fortunately, setting up <a href='http://www.drbd.org/'>DRBD</a> and <a href='http://oss.oracle.com/projects/ocfs2/'>OCFS2</a> isn&#8217;t that easy. It&#8217;s doable, of course, and works great if done right. Unfortunately, being a complex system makes it susceptible to errors that do occur (by Murphy&#8217;s law and by statistics) more often than in some less complicated setups.</p>
+
+<p>Luckily, if you need a multi-way synchronization tool and you can deal with some limitations, then you should definitely try <a href='http://oss.linbit.com/csync2/'>csync2</a> - a tool developed by the authors of <a href='http://www.drbd.org'>DRBD</a>, that can sometimes turn quite handy.</p>
+
+<h2 id='what_is_csync2'>What is csync2?</h2>
+
+<p>Authors describe <a href='http://oss.linbit.com/csync2/'>csync2</a> as a:</p>
+
+<p><em>Csync2 is a cluster synchronization tool. It can be used to keep files on multiple hosts in a cluster in sync. Csync2 can handle complex setups with much more than just 2 hosts, handle file deletions and can detect conflicts.</em></p>
+
+<p>So how can it be helpful? I&#8217;ll describe one of the use cases I came across recently.</p>
+
+<h2 id='serving_web_assets_static_files_with_multiple_http_server_nodes_nginx'>Serving web assets (static files) with multiple http server nodes (nginx)</h2>
+
+<p>The system I worked with started as a simple and durable setup. The application layer consisted of two application nodes, working in a hot-standby mode. The initial requirements set to have HA (high availability), not a LB (load balance). So whenever the master node failed (or was set to fail), the slave took over (with some virtual IP magic under the hood). This means, that only one node was active at a time. This was fine until a single machine couldn&#8217;t handle the load. The system did have a database server, but both application nodes had to have an access to a shared storage - a place where some static files were kept.</p>
+
+<h2 id='requirements'>Requirements</h2>
+
+<p>First of all I ruled out solutions that required extra nodes (a business requirement). So a pair of new NFS servers was not an option. Moreover, the design had to scale for more than two nodes. This made rsync and similar &#8220;one way sync&#8221; tools inaplicable as well.</p>
+
+<h2 id='drbd__too_powerful'>DRBD - too powerful</h2>
+
+<p>After some research two approaches surfaced.</p>
+
+<p>One was to use a full-blown replicated filesystem (OCFS2) with a shared block storage beneath (DRBD). It was a stripped version of the NFS server idea, but turned to be cumbersome to scale and, at least initially (<em>&#8220;The First Rule of Program Optimization: Don&#8217;t do it. The Second Rule of Program Optimization (for experts only!): Don&#8217;t do it yet.&#8221;</em> - quote by Michael A. Jackson) it was like using cannon to kill a fly.</p>
+
+<h2 id='csync2'>csync2</h2>
+
+<p>Then I&#8217;ve tried to setup csync2 - a tool I came across while doing some research about DRBD some time ago. After about 30 minutes the system was up and running. The setup is very simple - all you need is a single configuration file:</p>
+<div class='highlight'><pre><code class='bash'>group app <span class='o'>{</span>
+ host app0.example.com app1.example.com app2.example.com;
+
+ key /etc/csync2.key-app;
+
+ include /vol/0/app/shared;
+ include /vol/0/app/spool;
+
+ backup-directory /vol/csync2/backup;
+ backup-generations 3;
+
+ auto none;
+<span class='o'>}</span>
+</code></pre></div>
+<p>And that&#8217;s it - this helps you to have <code>/vol/0/app/shared</code> and <code>/vol/0/app/spool</code> synchronized between all the nodes. If a files is added, modified or deleted then the change is automatically propagated to other nodes.</p>
+
+<h2 id='batch_mode_of_operation'>Batch mode of operation</h2>
+
+<p>There&#8217;s one catch, however. Csync2 works in batch mode, so you don&#8217;t get an on-line synchronization. Running csync2 from cron every minute (or in a loop) doesn&#8217;t solve that either. Moreover, if you deal with hundreds of thousands of files, then it takes some time to scan all files for potential differences.</p>
+
+<p>However, if you can modify you application to trigger csync2, this can easily be solved by the following wrapper script.</p>
+<div class='highlight'><pre><code class='bash'><span class='c'>#!/bin/bash</span>
+
+/usr/sbin/csync2 -v -m <span class='nv'>$@</span> 2&gt;&amp;1 | /usr/bin/logger -t csync2
+/usr/sbin/csync2 -v -u 2&gt;&amp;1 | /usr/bin/logger -t csync2
+</code></pre></div>
+<p>First it sets its argument as &#8220;dirty&#8221; (so pending synchronization). Then it updates all elements with the &#8220;dirty&#8221; flag set. It&#8217;s fast as csync2 doesn&#8217;t compare all the files and checks only the one that have been pointed out.</p>
+
+<p>The logger part gives you an audit log of all the things that happened - just to check if everything is OK.</p>
+
+<h2 id='problems'>Problems</h2>
+
+<p>There was one problem I had to deal with. After generating the certificates the csync2 nodes couldn&#8217;t connect. It turned to be a known bug:</p>
+
+<ul>
+<li><a href='http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=501289'>http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=501289</a></li>
+
+<li><a href='http://archives.free.net.ph/message/20080811.081952.de6b9f3e.ja.html'>http://archives.free.net.ph/message/20080811.081952.de6b9f3e.ja.html</a></li>
+</ul>
+
+<p>Copying certificate and key files solved the problem.</p>
+</div>
+
+<h2>
+	Questions?
+</h2>
+
+<p>
+	Should you have any questions or comments just drop me an email and I'll be happy to respond! You can find the contact information on... the <a href="http://en.onoclea.com/contact.html">contact</a> page. Or use the comment box below.
+</p>
+
+<h2>
+	Comments?
+</h2>
+
+<p>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_shortname = 'en-onoclea';
+		var disqus_identifier = '/bits/csync2-multi-way-sync';
+		var disqus_url = 'http://en.onoclea.com/bits/csync2-multi-way-sync.html';
+
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</p>
+
+
+						<div id="footer">
+							<img src="http://static.onoclea.com/images/layout/hline-2.png" title="" alt="" />
+							<a href="/about_me.html">About me</a>
+							<a href="/clients.html">Clients</a>
+							<a href="/modus_operandi.html">Modus operandi</a>
+							<a href="/bits.html">Bits</a>
+							<a href="/contact.html">Contact me</a>
+							<span class="info">© 2010 Onoclea Paweł Sawicki</span>
+						</div>
+					</div>
+
+					<div id="bottom"></div>
+					<script type="text/javascript"> Cufon.now(); </script>
+				</div>
+
+				<div style="clear:both;height:1px;"></div>
+			</div>
+		</div>
+	</body>
+</html>

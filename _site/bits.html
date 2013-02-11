@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<meta name="description" content="" />
+		<meta name="keywords" content="linux, unix, cloud, amazon, s3, cloudfront, route 53, dns, puppet, configuration management" />
+		<meta name="language" content="en" />
+
+		<meta name="robots" content="NOODP, index, follow" />
+	
+		<link rel="stylesheet" href="http://static.onoclea.com/css/style.css" media="screen" />
+		<link rel="stylesheet" href="http://static.onoclea.com/css/syntax.css" media="screen" />
+
+		<link rel="alternate" type="application/rss+xml" title="Onoclea Paweł Sawicki" href="http://feeds.feedburner.com/Onoclea" />
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/jquery-1.4.2.min.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/cufon-yui.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed_Light.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Yanone_Kaffeesatz_Light.font.js"></script>
+	
+		<script type="text/javascript">
+			Cufon.replace('#banner',{fontFamily: 'Kurier Condensed'});
+
+			Cufon.replace('#content h1',{fontFamily: 'Kurier Condensed'});
+			Cufon.replace('#content h2',{fontFamily: 'Kurier Condensed Light'});
+
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+
+			Cufon.replace('#menu a',{hover:true, fontFamily: 'Yanone Kaffeesatz Light'});
+		</script>
+		<title>Onoclea - Bits</title>
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-19646337-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="outer-wrapper">
+			<div id="wrapper">
+				<div class="leftc">
+		
+					<div class="cell-1">
+						<a href="http://onoclea.com/"><img src="http://static.onoclea.com/images/layout/onoclea-logo.png" title="Onoclea Logo" alt="Onoclea Logo" class="logo"/></a>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-2">
+						<h1>About me</h1>
+						<p>
+							An experienced enterprise architect and project manager with a strong technological background.
+						</p>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-3">
+						<h1><a href="/contact.html">Contact me</a></h1>
+						<p>
+							Polish mobile (preferred):<br/>
+							<a href="tel:+48601610614">+48&nbsp;601&nbsp;610&nbsp;614</a><br/>
+							UK mobile:<br/>
+							<a href="tel:+447565605604">+44&nbsp;7565&nbsp;605&nbsp;604</a><br/>
+							eMail:<br/>
+							<a href="mailto:pawel@sawicki.eu">pawel@sawicki.eu</a>
+						</p>
+					</div>
+
+					<a href="http://pl.onoclea.com/o_mnie.html">
+						<div class="cell-4">
+							<h1>
+								wersja polska
+								<br />
+								<img src="http://static.onoclea.com/images/layout/flag-poland.png" alt="wersja polska" title="wersja polska" />
+							</h1>
+						</div>
+					</a>
+				</div>
+				<div class="rightc">
+					<div id="menu">
+						<a href="/about_me.html">About me</a>
+						<a href="/clients.html">Clients</a>
+						<a href="/modus_operandi.html">Modus operandi</a>
+						<a href="/bits.html">Bits</a>
+						<a href="/contact.html">Contact me</a>
+					</div>
+		
+					<div id="banner">
+						<div id="text-1">Do you need a&nbsp;Cloud, an IT or a&nbsp;Telecommunications specialist?</div>
+						<div id="text-2"><a href="/contact.html">Contact me!</a></div>
+					</div>
+
+					<div id="content">
+						<div id="header">
+	<h1>
+		Bits and bytes...
+	</h1>
+
+	<h2>
+	...some small pieces of information that I found interesting, useful or just worth remembering.
+	</h2>
+</div>
+
+<p>
+	
+	<h3><a href="/bits/linux-kvm-dlna-upnp-smcroute.html">Forwarding (routing) DLNA/UPnP broadcasts on Linux (virtual setup using KVM).</a></h3>
+
+	<p><p>One of the recent updates in my home infrastructure was to convert from VMware to Linux KVM in terms of the virtualisation platform. Everything went smoothly, virtual machines have been successfuly converted....</p>
+	
+	<h3><a href="/bits/hp-microserver-remote-access-card-ipmi-on-linux.html">How to make the HP MicroServer Remote Access Card to work via IPMI (ipmitool) on ArchLinux (or any other Linux distro in general)?</a></h3>
+
+	<p><p>Couple of days back I wanted to access the HP MicroServer Remote Access Card via the IPMI (ipmitool) interface. The reason was quite simple - I locked myself out from the web...</p>
+	
+	<h3><a href="/bits/csync2-multi-way-sync.html">csync2 - When all you need is a multi-way synchronization tool</a></h3>
+
+	<p><p>Scaling a system horizontally usually requires sharing some data between your worker nodes. If your architecture justifies a database server (be it either SQL or NoSQL) then that&#8217;s usually a quite trivial...</p>
+	
+	<h3><a href="/bits/external-dns-and-shared-hosting-like-dreamhost.html">How to host your site on Dreamhost (or any shared hosting site) with an external DNS server</a></h3>
+
+	<p><p>Dreamhost is one of the best shared-hosting sites I&#8217;ve came across. It has its ups and downs, but all in all it&#8217;s very useful in many situations. In my particular case I...</p>
+	
+	<h3><a href="/bits/nginx-and-amazon-s3-cdn.html">Nginx and Amazon S3 CDN</a></h3>
+
+	<p><p>One of the projects I&#8217;ve been working on recently required a reliable CDN. There were a number of requirements that the desing had to follow. One of the limitations was the price...</p>
+	
+	<h3><a href="/bits/soft-drink-vending-machine-high-level-design.html">Soft-drink vending machine high level design</a></h3>
+
+	<p><p>During one of my job interviews I was asked to present a high level design of a soft-drink vending machine. So I sat down and tried to think what would the perfect...</p>
+	
+	<h3><a href="/bits/postfix-devecot-deliver-catchall.html">Postifx + Dovecot Deliver + Catchall Addresses - Impossible is nothing!</a></h3>
+
+	<p><p>For over a year now I&#8217;ve been struggling with something I thought would never get solved. Though the setup I have (postfix + dovecot) isn&#8217;t really complicated, it does have some nifty...</p>
+	
+	<h3><a href="/bits/why-I-adore-hp-procurve-switches.html">Why I adore HP ProCurve switches</a></h3>
+
+	<p><p>You may say that the subject is over-exaggerated. I do, however, claim that thanks to this fine piece of &#8220;automation&#8221; I have saved myself loads of time. Instead of logging onto a...</p>
+	
+</p>
+
+<p>
+	<div id="disqus_thread"></div>
+
+	<script type="text/javascript">
+		var disqus_shortname = 'en-onoclea';
+		var disqus_identifier = '';
+		var disqus_url = 'http://en.onoclea.com/bits.html';
+
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</p>
+
+
+						<div id="footer">
+							<img src="http://static.onoclea.com/images/layout/hline-2.png" title="" alt="" />
+							<a href="/about_me.html">About me</a>
+							<a href="/clients.html">Clients</a>
+							<a href="/modus_operandi.html">Modus operandi</a>
+							<a href="/bits.html">Bits</a>
+							<a href="/contact.html">Contact me</a>
+							<span class="info">© 2010 Onoclea Paweł Sawicki</span>
+						</div>
+					</div>
+
+					<div id="bottom"></div>
+					<script type="text/javascript"> Cufon.now(); </script>
+				</div>
+
+				<div style="clear:both;height:1px;"></div>
+			</div>
+		</div>
+	</body>
+</html>

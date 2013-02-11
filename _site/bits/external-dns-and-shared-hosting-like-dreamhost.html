@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<meta name="description" content="" />
+		<meta name="keywords" content="linux, unix, cloud, amazon, s3, cloudfront, route 53, dns, puppet, configuration management" />
+		<meta name="language" content="en" />
+
+		<meta name="robots" content="NOODP, index, follow" />
+	
+		<link rel="stylesheet" href="http://static.onoclea.com/css/style.css" media="screen" />
+		<link rel="stylesheet" href="http://static.onoclea.com/css/syntax.css" media="screen" />
+
+		<link rel="alternate" type="application/rss+xml" title="Onoclea Paweł Sawicki" href="http://feeds.feedburner.com/Onoclea" />
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/jquery-1.4.2.min.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/cufon-yui.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed_Light.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Yanone_Kaffeesatz_Light.font.js"></script>
+	
+		<script type="text/javascript">
+			Cufon.replace('#banner',{fontFamily: 'Kurier Condensed'});
+
+			Cufon.replace('#content h1',{fontFamily: 'Kurier Condensed'});
+			Cufon.replace('#content h2',{fontFamily: 'Kurier Condensed Light'});
+
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+
+			Cufon.replace('#menu a',{hover:true, fontFamily: 'Yanone Kaffeesatz Light'});
+		</script>
+		<title>Onoclea - How to host your site on Dreamhost (or any shared hosting site) with an external DNS server</title>
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-19646337-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="outer-wrapper">
+			<div id="wrapper">
+				<div class="leftc">
+		
+					<div class="cell-1">
+						<a href="http://onoclea.com/"><img src="http://static.onoclea.com/images/layout/onoclea-logo.png" title="Onoclea Logo" alt="Onoclea Logo" class="logo"/></a>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-2">
+						<h1>About me</h1>
+						<p>
+							An experienced enterprise architect and project manager with a strong technological background.
+						</p>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-3">
+						<h1><a href="/contact.html">Contact me</a></h1>
+						<p>
+							Polish mobile (preferred):<br/>
+							<a href="tel:+48601610614">+48&nbsp;601&nbsp;610&nbsp;614</a><br/>
+							UK mobile:<br/>
+							<a href="tel:+447565605604">+44&nbsp;7565&nbsp;605&nbsp;604</a><br/>
+							eMail:<br/>
+							<a href="mailto:pawel@sawicki.eu">pawel@sawicki.eu</a>
+						</p>
+					</div>
+
+					<a href="http://pl.onoclea.com/o_mnie.html">
+						<div class="cell-4">
+							<h1>
+								wersja polska
+								<br />
+								<img src="http://static.onoclea.com/images/layout/flag-poland.png" alt="wersja polska" title="wersja polska" />
+							</h1>
+						</div>
+					</a>
+				</div>
+				<div class="rightc">
+					<div id="menu">
+						<a href="/about_me.html">About me</a>
+						<a href="/clients.html">Clients</a>
+						<a href="/modus_operandi.html">Modus operandi</a>
+						<a href="/bits.html">Bits</a>
+						<a href="/contact.html">Contact me</a>
+					</div>
+		
+					<div id="banner">
+						<div id="text-1">Do you need a&nbsp;Cloud, an IT or a&nbsp;Telecommunications specialist?</div>
+						<div id="text-2"><a href="/contact.html">Contact me!</a></div>
+					</div>
+
+					<div id="content">
+						<div id="header">
+	<h1>
+		<a href="/bits/external-dns-and-shared-hosting-like-dreamhost.html">How to host your site on Dreamhost (or any shared hosting site) with an external DNS server</a>
+	</h1>
+
+	<h2>
+		<a href="/bits/external-dns-and-shared-hosting-like-dreamhost.html">/bits/external-dns-and-shared-hosting-like-dreamhost.html</a>
+	</h2>
+
+	<h3>
+		published 21 Jan 2011
+	</h3>
+</div>
+
+<div id="bit">
+	<p>Dreamhost is one of the best shared-hosting sites I&#8217;ve came across. It has its ups and downs, but all in all it&#8217;s very useful in many situations. In my particular case I use it to host some of my family&#8217;s sites and files. I could do it on my own, but I prefer to pay $10 a month and sleep safe and sound :)</p>
+
+<h2 id='the_problem'>The problem</h2>
+
+<p>There&#8217;s one problem, however. I don&#8217;t use <a href='http://www.dreamhost.com/r.cgi?215063'>Dreamhost</a> to host my domains. So the question is - how do you reliably setup a DNS record (e.g. go.pjs.name used in the example below) to point it to a Dreamhosts&#8217; IP address, which can change? The solution is quite straightforward and easy to implement. What you need to to is to point your subdomain&#8217;s (e.g. go.pjs.name) domain name servers (it&#8217;s legit and nothing out of ordinary) to the <a href='http://www.dreamhost.com/r.cgi?215063'>Dreamhost</a> defined ones (<code>ns1.dreamhost.com</code>, <code>ns2.dreamhost.com</code>, <code>ns3.dreamhost.com</code>). This way you:</p>
+
+<ul>
+<li>retain full control over your domain</li>
+
+<li>delegate authority for the subdomain (the one hosted on Dreamhost) so whenever somebody at Dreamhost decides to change the IP address of the server that keeps your data, you are completely safe and don&#8217;t have to change anything</li>
+</ul>
+
+<p>BTW - this technique is universal and can be applied to any shared hosting site, or any similar situation.</p>
+
+<h2 id='example'>Example</h2>
+
+<p>See the following example as it may shed some light on the solution, since the particular implementation depends on where you keep your domain.</p>
+
+<h3 id='my_domain__'>My domain - <code>pjs.name</code></h3>
+
+<p>I own a <code>pjs.name</code> domain and host its DNS servers externally:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>dig -t ns pjs.name
+
+;; QUESTION SECTION:
+;pjs.name.                      IN      NS
+
+;; ANSWER SECTION:
+pjs.name.               86400   IN      NS      ns2.onoclea.net.
+pjs.name.               86400   IN      NS      ns1.onoclea.net.
+pjs.name.               86400   IN      NS      ns3.onoclea.net.
+pjs.name.               86400   IN      NS      ns5.onoclea.net.
+pjs.name.               86400   IN      NS      ns6.onoclea.net.
+pjs.name.               86400   IN      NS      ns4.onoclea.net.
+</code></pre></div>
+<p>OK, so what about the site I wish to keep at my shared hosting site?</p>
+
+<h3 id='my_site_at_dreamhost__'>My site at Dreamhost - <code>go.pjs.name</code></h3>
+
+<p>I also have a site at Dreamhost - <code>go.pjs.name</code>. It serves me as a place where I can share data with my friends. I just upload some data, create a unique link (e.g. http://go.pjs.name/d/9f166080-2fe1-4600-92bb-d42dc19c453b/) and voila. I could, of course, use a specialized service, e.g. <a href='http://db.tt/2450WkK'>Dropbox</a> or do some other nifty things like setting up a username and password or maybe even SSL. But still - there are situations that this level of security is all I need.</p>
+
+<p>There is a problem with how you set up the DNS records. The straightforward approach would be to get the current host at Dreamhost that keeps your data, get its IP address and create an <code>A</code> records pointing to that IP address. This is not a bulletproof solution, unfortunately. If the IP addresses at Dreamhost changes, you end up with an unreachable site.</p>
+
+<h3 id='solution'>Solution</h3>
+
+<p>The solution is very simple. All you need to do is to create <code>NS</code> records for the site/domain you wish to host at Dreamhost and point it to the Dreamhost&#8217;s DNS servers. So, in our example, this would look like the following:</p>
+<div class='highlight'><pre><code class='bash'><span class='nv'>$ </span>dig -t ns go.pjs.name @ns1.onoclea.net
+
+;; QUESTION SECTION:
+;go.pjs.name.                   IN      NS
+
+;; AUTHORITY SECTION:
+go.pjs.name.            86400   IN      NS      ns2.dreamhost.com.
+go.pjs.name.            86400   IN      NS      ns3.dreamhost.com.
+go.pjs.name.            86400   IN      NS      ns1.dreamhost.com.
+</code></pre></div>
+<p>And that&#8217;s it. Now you don&#8217;t have to worry that your site becomes unreachable because somebody decides to change an IP address somewhere at Dreamhost. Notifying all the customers that could be potentially affected is almost impossible, so don&#8217;t expect it. What you can do instead is to rely on the fact that the DNS data must be kept valid. And this is one way of doing that :)</p>
+
+<h2 id='conclusions'>Conclusions</h2>
+
+<p>DNS is not limited just to <code>A</code>, <code>MX</code> and <code>CNAME</code> records&#8230; and this one tiny feature of it just made my life a bit easier :)</p>
+</div>
+
+<h2>
+	Questions?
+</h2>
+
+<p>
+	Should you have any questions or comments just drop me an email and I'll be happy to respond! You can find the contact information on... the <a href="http://en.onoclea.com/contact.html">contact</a> page. Or use the comment box below.
+</p>
+
+<h2>
+	Comments?
+</h2>
+
+<p>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_shortname = 'en-onoclea';
+		var disqus_identifier = '/bits/external-dns-and-shared-hosting-like-dreamhost';
+		var disqus_url = 'http://en.onoclea.com/bits/external-dns-and-shared-hosting-like-dreamhost.html';
+
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</p>
+
+
+						<div id="footer">
+							<img src="http://static.onoclea.com/images/layout/hline-2.png" title="" alt="" />
+							<a href="/about_me.html">About me</a>
+							<a href="/clients.html">Clients</a>
+							<a href="/modus_operandi.html">Modus operandi</a>
+							<a href="/bits.html">Bits</a>
+							<a href="/contact.html">Contact me</a>
+							<span class="info">© 2010 Onoclea Paweł Sawicki</span>
+						</div>
+					</div>
+
+					<div id="bottom"></div>
+					<script type="text/javascript"> Cufon.now(); </script>
+				</div>
+
+				<div style="clear:both;height:1px;"></div>
+			</div>
+		</div>
+	</body>
+</html>

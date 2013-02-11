@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+      <loc>http://en.onoclea.com/about_me.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1</priority>
+   </url>
+   <url>
+      <loc>http://en.onoclea.com/contact.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>http://en.onoclea.com/clients.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>http://en.onoclea.com/modus_operandi.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>http://en.onoclea.com/bits.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://en.onoclea.com/bits/linux-kvm-dlna-upnp-smcroute.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://en.onoclea.com/bits/hp-microserver-remote-access-card-ipmi-on-linux.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://en.onoclea.com/bits/csync2-multi-way-sync.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://en.onoclea.com/bits/external-dns-and-shared-hosting-like-dreamhost.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://en.onoclea.com/bits/nginx-and-amazon-s3-cdn.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://en.onoclea.com/bits/soft-drink-vending-machine-high-level-design.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://en.onoclea.com/bits/postfix-devecot-deliver-catchall.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>http://en.onoclea.com/bits/why-I-adore-hp-procurve-switches.html</loc>
+      <lastmod>2013-02-11</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+</urlset>

@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<meta name="description" content="" />
+		<meta name="keywords" content="linux, unix, cloud, amazon, s3, cloudfront, route 53, dns, puppet, configuration management" />
+		<meta name="language" content="en" />
+
+		<meta name="robots" content="NOODP, index, follow" />
+	
+		<link rel="stylesheet" href="http://static.onoclea.com/css/style.css" media="screen" />
+		<link rel="stylesheet" href="http://static.onoclea.com/css/syntax.css" media="screen" />
+
+		<link rel="alternate" type="application/rss+xml" title="Onoclea Paweł Sawicki" href="http://feeds.feedburner.com/Onoclea" />
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/jquery-1.4.2.min.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/cufon-yui.js"></script>
+	
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Kurier_Condensed_Light.font.js"></script>
+		<script type="text/javascript" src="http://static.onoclea.com/scripts/Yanone_Kaffeesatz_Light.font.js"></script>
+	
+		<script type="text/javascript">
+			Cufon.replace('#banner',{fontFamily: 'Kurier Condensed'});
+
+			Cufon.replace('#content h1',{fontFamily: 'Kurier Condensed'});
+			Cufon.replace('#content h2',{fontFamily: 'Kurier Condensed Light'});
+
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+			Cufon.replace('#wrapper .leftc h1',{fontFamily: 'Yanone Kaffeesatz Light'});
+
+			Cufon.replace('#menu a',{hover:true, fontFamily: 'Yanone Kaffeesatz Light'});
+		</script>
+		<title>Onoclea - Postifx + Dovecot Deliver + Catchall Addresses - Impossible is nothing!</title>
+
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-19646337-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="outer-wrapper">
+			<div id="wrapper">
+				<div class="leftc">
+		
+					<div class="cell-1">
+						<a href="http://onoclea.com/"><img src="http://static.onoclea.com/images/layout/onoclea-logo.png" title="Onoclea Logo" alt="Onoclea Logo" class="logo"/></a>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-2">
+						<h1>About me</h1>
+						<p>
+							An experienced enterprise architect and project manager with a strong technological background.
+						</p>
+					</div>
+		
+					<img src="http://static.onoclea.com/images/layout/hline-1.png" title="Separator" alt="Separator" class="separator"/>
+		
+					<div class="cell-3">
+						<h1><a href="/contact.html">Contact me</a></h1>
+						<p>
+							Polish mobile (preferred):<br/>
+							<a href="tel:+48601610614">+48&nbsp;601&nbsp;610&nbsp;614</a><br/>
+							UK mobile:<br/>
+							<a href="tel:+447565605604">+44&nbsp;7565&nbsp;605&nbsp;604</a><br/>
+							eMail:<br/>
+							<a href="mailto:pawel@sawicki.eu">pawel@sawicki.eu</a>
+						</p>
+					</div>
+
+					<a href="http://pl.onoclea.com/o_mnie.html">
+						<div class="cell-4">
+							<h1>
+								wersja polska
+								<br />
+								<img src="http://static.onoclea.com/images/layout/flag-poland.png" alt="wersja polska" title="wersja polska" />
+							</h1>
+						</div>
+					</a>
+				</div>
+				<div class="rightc">
+					<div id="menu">
+						<a href="/about_me.html">About me</a>
+						<a href="/clients.html">Clients</a>
+						<a href="/modus_operandi.html">Modus operandi</a>
+						<a href="/bits.html">Bits</a>
+						<a href="/contact.html">Contact me</a>
+					</div>
+		
+					<div id="banner">
+						<div id="text-1">Do you need a&nbsp;Cloud, an IT or a&nbsp;Telecommunications specialist?</div>
+						<div id="text-2"><a href="/contact.html">Contact me!</a></div>
+					</div>
+
+					<div id="content">
+						<div id="header">
+	<h1>
+		<a href="/bits/postfix-devecot-deliver-catchall.html">Postifx + Dovecot Deliver + Catchall Addresses - Impossible is nothing!</a>
+	</h1>
+
+	<h2>
+		<a href="/bits/postfix-devecot-deliver-catchall.html">/bits/postfix-devecot-deliver-catchall.html</a>
+	</h2>
+
+	<h3>
+		published 11 Feb 2008
+	</h3>
+</div>
+
+<div id="bit">
+	<p>For over a year now I&#8217;ve been struggling with something I thought would never get solved. Though the setup I have (postfix + dovecot) isn&#8217;t really complicated, it does have some nifty features. Among many of them is the fact that I use catchall addresses in most of my domains. On the top of that I wanted to use Sieve to filter some of my mail on the server side (especially those &#8220;you always read them&#8221; daily log reports).</p>
+
+<p>But there was a problem. I&#8217;ve even made a post on the Dovecot mailinglist:</p>
+
+<p><a href='http://www.dovecot.org/list/dovecot/2006-March/012064.html'>http://www.dovecot.org/list/dovecot/2006-March/012064.html</a></p>
+
+<p>In general - dovecot cannot mimic postfix&#8217; way of handling catch-all addresses - there was nothing even similar to the &#8220;table search order&#8221; found in my favorite MTA. So I made a rather ugly patch&#8230; and it worked. But it was such a dirty hack that merging it with the dovecot&#8217;s trunk wasn&#8217;t really an option. So whenever a new dovecot release was published I had to manually prepare my &#8220;own&#8221; version. So I ended up having two separate setups depending on the client&#8217;s demands - either a vanilla dovecot without my patch (that was updated on a regular basis) or a hacked version that&#8230; well&#8230; should be updated :)</p>
+
+<p>Couple of days ago I was contacted by Maciej Paczesny asking if there was any progress with the problem I reported back in 2006.</p>
+
+<p>After exchanging some emails and thoughts I think I&#8217;ve finally found a neat way of getting &#8220;things done right&#8221;.</p>
+
+<p><a href='http://www.postfix.org/canonical.5.html'>http://www.postfix.org/canonical.5.html</a></p>
+
+<p>All you have to do in fact is to rewrite the recipient address using postfix&#8217; recipient_canonical_maps table. That&#8217;s all. Thanks to this little trick, dovecot-deliver receives an address that is final and unique so it doesn&#8217;t have any troubles locating a proper message store directory.</p>
+
+<p>Technically speaking, you must define recipient_canonical_maps in such a way that it would return final and unique address for any of your users (here we can benefit from postfix&#8217; table search order, so catch-all addresses do work!). Then postfix will rewrite the envelope &#8220;To:&#8221; header, pass it to dovecot and voila - problem solved.</p>
+
+<p>Thanks Maciej! :)</p>
+</div>
+
+<h2>
+	Questions?
+</h2>
+
+<p>
+	Should you have any questions or comments just drop me an email and I'll be happy to respond! You can find the contact information on... the <a href="http://en.onoclea.com/contact.html">contact</a> page. Or use the comment box below.
+</p>
+
+<h2>
+	Comments?
+</h2>
+
+<p>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		var disqus_shortname = 'en-onoclea';
+		var disqus_identifier = '/bits/postfix-devecot-deliver-catchall';
+		var disqus_url = 'http://en.onoclea.com/bits/postfix-devecot-deliver-catchall.html';
+
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+	<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</p>
+
+
+						<div id="footer">
+							<img src="http://static.onoclea.com/images/layout/hline-2.png" title="" alt="" />
+							<a href="/about_me.html">About me</a>
+							<a href="/clients.html">Clients</a>
+							<a href="/modus_operandi.html">Modus operandi</a>
+							<a href="/bits.html">Bits</a>
+							<a href="/contact.html">Contact me</a>
+							<span class="info">© 2010 Onoclea Paweł Sawicki</span>
+						</div>
+					</div>
+
+					<div id="bottom"></div>
+					<script type="text/javascript"> Cufon.now(); </script>
+				</div>
+
+				<div style="clear:both;height:1px;"></div>
+			</div>
+		</div>
+	</body>
+</html>
